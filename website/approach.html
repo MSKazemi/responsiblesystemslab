@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Approach — how Responsible Systems Lab works</title>
+<meta name="description" content="What &quot;responsibility built in&quot; means at Responsible Systems Lab: responsibility as an architectural property, published limits, and claims that can be independently checked." />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M20 3 L33 10.5 V25.5 L20 33 L7 25.5 V10.5 Z' fill='none' stroke='%23155C9E' stroke-width='2.4' stroke-linejoin='round'/%3E%3Cpath d='M13.5 19.5 l4.5 4.5 L27 13.5' fill='none' stroke='%2300A3A3' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles/rsl.css?v=20261010a" />
+<link rel="canonical" href="https://responsiblesystemslab.org/approach.html" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Responsible Systems Lab" />
+<meta property="og:title" content="Approach — how Responsible Systems Lab works" />
+<meta property="og:description" content="Responsibility as an architectural property, publicly stated limits, honest capability marking, and claims that can be independently checked." />
+<meta property="og:url" content="https://responsiblesystemslab.org/approach.html" />
+<meta property="og:image" content="https://responsiblesystemslab.org/assets/og-rsl.png" />
+<meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Approach — how Responsible Systems Lab works" />
+<meta name="twitter:description" content="Responsibility as an architectural property, publicly stated limits, honest capability marking, and claims that can be independently checked." />
+<meta name="twitter:image" content="https://responsiblesystemslab.org/assets/og-rsl.png" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebPage","@id":"https://responsiblesystemslab.org/approach.html#webpage","url":"https://responsiblesystemslab.org/approach.html","name":"Approach — how Responsible Systems Lab works","isPartOf":{"@id":"https://responsiblesystemslab.org/#website"},"about":{"@id":"https://responsiblesystemslab.org/#org"},"dateModified":"2026-10-10",
+ "breadcrumb":{"@type":"BreadcrumbList","itemListElement":[
+   {"@type":"ListItem","position":1,"name":"Home","item":"https://responsiblesystemslab.org/"},
+   {"@type":"ListItem","position":2,"name":"Approach"}]}}
+]}
+</script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <g id="rsl-mark">
+    <path d="M20 3 L33 10.5 V25.5 L20 33 L7 25.5 V10.5 Z" fill="none" stroke="#155C9E" stroke-width="2.2" stroke-linejoin="round"/>
+    <path d="M13.5 19.5 l4.5 4.5 L27 13.5" fill="none" stroke="#00A3A3" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="33" cy="10.5" r="1.9" fill="#4CAF6A"/><circle cx="7" cy="25.5" r="1.6" fill="#155C9E"/>
+  </g>
+</defs></svg>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="header">
+  <div class="container nav">
+    <a class="brand" href="index.html" aria-label="Responsible Systems Lab home">
+      <svg class="mark" viewBox="0 0 40 40"><use href="#rsl-mark"/></svg>
+      <span>Responsible Systems Lab<small>Research · Responsibility · Real-world impact</small></span>
+    </a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="approach.html">Approach</a></li>
+        <li><a href="index.html#mission">Mission</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero hero-compact">
+  <div class="container hero-grid">
+    <div>
+      <p class="crumb reveal"><a href="index.html">Home</a> · Approach</p>
+      <span class="hero-tag reveal"><span class="dot"></span> How we work</span>
+      <h1 class="reveal d1">“Responsible” has to mean <em>something checkable</em>.</h1>
+      <p class="hero-sub reveal d2">Almost every technology organisation now says it builds responsibly. The word has been used often enough, and loosely enough, that it no longer carries information on its own. This page says what we mean by it in terms specific enough to be wrong.</p>
+    </div>
+  </div>
+  <svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0,30 C240,80 480,0 720,35 C960,70 1200,10 1440,45 L1440,90 L0,90 Z"></path></svg>
+</section>
+
+<!-- ============ PRINCIPLE 1 ============ -->
+<section>
+  <div class="container split">
+    <div class="reveal">
+      <span class="eyebrow">01 · Structure over promise</span>
+      <p class="mission-statement">A guarantee you can verify beats a guarantee you must trust.</p>
+    </div>
+    <div class="reveal d1 prose">
+      <p>Most responsibility claims in software are promissory: the system <em>could</em> do the harmful thing, and the organisation undertakes not to. That undertaking depends on the organisation continuing to exist, continuing to be owned by the same people, and continuing to mean it. All three change.</p>
+      <p>We prefer properties that hold structurally — where the harmful thing is not prevented by policy but is absent from the design. A dictation tool that makes no network call in the dictation path cannot send your voice to a server, regardless of what its privacy policy says, who buys the company, or what the terms become next year. The user does not have to trust anyone; they can read the source and watch their own network interface.</p>
+      <p>This is not always achievable. When it is not, the honest move is to say which parts rest on trust rather than to blur the two together.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRINCIPLE 2 ============ -->
+<section class="section-mist">
+  <div class="container split">
+    <div class="reveal">
+      <span class="eyebrow">02 · Publish the limits</span>
+      <p class="mission-statement">Stating what a system cannot do is what gives its other claims value.</p>
+    </div>
+    <div class="reveal d1 prose">
+      <p>A capability list with no boundary is marketing. We publish, on the same page and with the same prominence, what each system is <strong>not</strong> good for and who should not use it.</p>
+      <blockquote>In YazSes, 103 of 148 documented capabilities are wired; the other 45 are publicly marked “planned” rather than described as though they already worked. The project page states plainly that it is not an AI agent, does not handle non-English well out of the box, and may lose to a cloud service on a noisy microphone.</blockquote>
+      <p>This costs something. A page that lists its own weaknesses converts worse than one that does not. It is worth it because the alternative — discovering the limitation yourself, after installing — is how software loses users permanently, and how a small lab loses the only asset it has.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRINCIPLE 3 ============ -->
+<section>
+  <div class="container split">
+    <div class="reveal">
+      <span class="eyebrow">03 · Evidence, not assertion</span>
+      <p class="mission-statement">If a claim cannot be independently checked, we do not make it.</p>
+    </div>
+    <div class="reveal d1 prose">
+      <p>Every factual claim on this site should be traceable by a reader who does not trust us. In practice that means work is released as open source, with published tests, versioned packages on public registries, and archived releases carrying permanent identifiers that resolve whether or not this website still exists.</p>
+      <ul>
+        <li><strong>Open source</strong> — the implementation is readable, so a privacy or safety claim about the architecture can be confirmed rather than believed.</li>
+        <li><strong>Published tests</strong> — a stated behaviour has an executable check behind it.</li>
+        <li><strong>Permanent identifiers</strong> — archived releases have a DOI, so a citation still resolves years later.</li>
+        <li><strong>Numbers with a source</strong> — a figure on this site comes from a file or a public registry we can point at, or it does not appear.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRINCIPLE 4 ============ -->
+<section class="section-mist">
+  <div class="container split">
+    <div class="reveal">
+      <span class="eyebrow">04 · Humans stay in the loop</span>
+      <p class="mission-statement">Automated systems should inform a decision, not quietly replace the person making it.</p>
+    </div>
+    <div class="reveal d1 prose">
+      <p>We work on systems that detect, document and flag — and then hand to a person. In domains where the underlying science is genuinely uncertain, an automated pass/fail verdict manufactures a confidence the evidence does not support, and it moves responsibility from someone accountable to something that cannot be.</p>
+      <p>The design consequence is concrete: prefer risk signals, event logs and reviewable records over automated judgments; make the reasoning inspectable; and make the system useful for improvement rather than for blame, because a monitoring tool that is experienced as an accusation gets switched off.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHO WE ARE ============ -->
+<section>
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Scale and honesty about it</span>
+      <h2>What this lab is, precisely.</h2>
+    </div>
+    <div class="prose reveal d1">
+      <p>Responsible Systems Lab is a small, independent, early-stage interdisciplinary project group. It is <strong>not</strong> a registered company, nonprofit, foundation or public institution, it employs no one, and it does not sell anything. We say this in plain terms because the alternative — a website whose tone implies an organisation that does not exist — would fail the first principle on this page.</p>
+      <p>Projects developed within the lab are independent open-source works. Their copyright and licences rest with their authors and contributors, not with the lab.</p>
+      <p>What that scale buys is the ability to choose problems on merit rather than on market size, and to say no to work we cannot finish. What it costs is throughput. We publish each project at its actual maturity level rather than describing prototypes as finished products.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section-mist">
+  <div class="container">
+    <div class="contact-card reveal">
+      <h2>Disagree with any of this?</h2>
+      <p>We would rather hear it. We welcome collaboration, advisors, and partners across responsible AI, sensing, verification, and human-centered design — and criticism of the reasoning above.</p>
+      <a class="btn btn-teal" href="mailto:contact@responsiblesystemslab.org">Get in touch
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16v12H4z M4 7l8 6 8-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand"><svg class="mark" viewBox="0 0 40 40"><use href="#rsl-mark"/></svg> Responsible Systems Lab</div>
+        <p class="footer-status">An independent applied research and innovation initiative focused on safer, more humane, and more accountable technology systems. Responsible Systems Lab is an informal interdisciplinary project group and is <strong>not currently a registered company, nonprofit, foundation, or public institution</strong>. Projects listed here are independent open-source works developed within the lab; their copyright and licences rest with their authors and contributors.</p>
+      </div>
+      <div class="footer-cols">
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="approach.html">Approach</a></li>
+            <li><a href="index.html#mission">Mission</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Projects</h4>
+          <ul>
+            <li><a href="novafabric.html">NovaFabric</a></li>
+<li><a href="idkmesh.html">IDKMesh</a></li>
+<li><a href="yazses.html">YazSes</a></li>
+<li><a href="reachweaver.html">ReachWeaver</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Responsible Systems Lab.</span>
+      <span class="updated">Page last updated 10 October 2026.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="scripts/site.js?v=20261010a"></script>
+</body>
+</html>

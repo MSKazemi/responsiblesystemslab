@@ -1,0 +1,28 @@
+# Responsible Systems Lab
+> Independent applied research and open-source engineering initiative exploring trustworthy AI, verification, evidence, privacy-preserving computing and human control. An informal initiative, not a registered company, nonprofit, foundation or university laboratory.
+
+Site: https://responsiblesystemslab.org/
+Last content review: 2026-10-10
+Contact: contact@responsiblesystemslab.org
+Founder / maintainer: Mohsen Seyedkazemi Ardebili — https://mskazemi.com/ — https://github.com/MSKazemi — https://orcid.org/0000-0002-1166-6559
+
+## Projects and maturity
+- [NovaFabric](https://responsiblesystemslab.org/novafabric.html): public beta, self-hosted replay and evidence infrastructure for AI agent executions; portable Run Capsules, validation, forensic and supported mocked replay, diff, provenance and optional sealing. [Project site](https://novafabric.ai/) | [Code](https://github.com/MSKazemi/novafabric). Not a real-time monitoring system; a capsule does not establish an agent was correct.
+- [IDKMesh](https://responsiblesystemslab.org/idkmesh.html): public research alpha, task and evidence contracts, verifier-panel gate-audit CLI, simulation and local evidence inspection. [Code and research](https://github.com/MSKazemi/idkmesh). The wider Verified Swarm Runner remains incomplete.
+- [YazSes](https://responsiblesystemslab.org/yazses.html): released open-source offline-by-default dictation and voice interface for Linux, macOS and Windows. [Project docs](https://mskazemi.com/yazses/) | [Code](https://github.com/MSKazemi/yazses). Current repository metadata reviewed 2026-10-10: version 2.42.0, 35 listed contributors; roadmap says 148 capabilities (103 wired / 45 planned) and 14,800+ tests on main. These are development-repository figures, not independent product-performance certifications.
+- [ReachWeaver](https://responsiblesystemslab.org/reachweaver.html): privately developed experimental evidence-backed social communications workflow with offline drafts, account isolation, explicit approvals, scheduling and mock-tested integrations. No personal accounts connected and no verified live end-to-end publishing. Not a public service or source download.
+
+## Principles
+- Responsibility is an architectural or operational property, not merely a marketing promise.
+- Publish factual sources, uncertainty, capability limits and realistic implementation status.
+- Prefer human authorization at consequential decision points.
+- Projects keep separate codebases, maintainership, licences, brand identities and documentation; listing does not claim ownership by a legal RSL entity.
+
+## Key pages
+- https://responsiblesystemslab.org/
+- https://responsiblesystemslab.org/projects.html
+- https://responsiblesystemslab.org/approach.html
+- https://responsiblesystemslab.org/novafabric.html
+- https://responsiblesystemslab.org/idkmesh.html
+- https://responsiblesystemslab.org/yazses.html
+- https://responsiblesystemslab.org/reachweaver.html

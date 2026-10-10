@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>YazSes — offline voice dictation | Responsible Systems Lab</title>
+<meta name="description" content="YazSes is an open-source, offline voice-dictation daemon for Linux, macOS and Windows. Speech is transcribed on your own CPU — nothing leaves the machine by default." />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M20 3 L33 10.5 V25.5 L20 33 L7 25.5 V10.5 Z' fill='none' stroke='%23155C9E' stroke-width='2.4' stroke-linejoin='round'/%3E%3Cpath d='M13.5 19.5 l4.5 4.5 L27 13.5' fill='none' stroke='%2300A3A3' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles/rsl.css?v=20261010a" />
+<link rel="canonical" href="https://responsiblesystemslab.org/yazses.html" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Responsible Systems Lab" />
+<meta property="og:title" content="YazSes — offline voice dictation | Responsible Systems Lab" />
+<meta property="og:description" content="Open-source, offline voice dictation for Linux, macOS and Windows. Transcribed on your own CPU — nothing leaves the machine by default. Apache-2.0." />
+<meta property="og:url" content="https://responsiblesystemslab.org/yazses.html" />
+<meta property="og:image" content="https://responsiblesystemslab.org/assets/og-rsl.png" />
+<meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="YazSes — offline voice dictation | Responsible Systems Lab" />
+<meta name="twitter:description" content="Open-source, offline voice dictation for Linux, macOS and Windows. Transcribed on your own CPU — nothing leaves the machine by default. Apache-2.0." />
+<meta name="twitter:image" content="https://responsiblesystemslab.org/assets/og-rsl.png" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"SoftwareApplication",
+ "@id":"https://responsiblesystemslab.org/yazses.html#software",
+ "name":"YazSes",
+ "description":"Open-source, offline voice-dictation daemon for Linux, macOS and Windows. Hold a key, speak, release — speech is transcribed on-device with faster-whisper and typed into the focused application, with editor and terminal voice commands. No cloud dependency, no API key, no subscription.",
+ "applicationCategory":"UtilitiesApplication",
+ "applicationSubCategory":"Speech recognition / voice dictation",
+ "operatingSystem":"Linux, macOS, Windows",
+ "softwareVersion":"2.42.0",
+ "datePublished":"2026-08-13",
+ "license":"https://www.apache.org/licenses/LICENSE-2.0",
+ "isAccessibleForFree":true,
+ "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+ "downloadUrl":"https://pypi.org/project/yazses/",
+ "softwareHelp":"https://mskazemi.com/yazses/",
+ "identifier":"https://doi.org/10.5281/zenodo.21856271",
+ "programmingLanguage":"Python",
+ "featureList":["Hold-to-talk offline dictation into any focused application","Editor and terminal voice commands","Audio and video file transcription","Speaker-labelled meeting capture","Dysfluency-Friendly Mode for stuttered or dysarthric speech","EMG muscle-sensor trigger for hands-free use"],
+ "author":{"@id":"https://responsiblesystemslab.org/#person-msa"},
+ "maintainer":{"@id":"https://responsiblesystemslab.org/#person-msa"},
+ "sameAs":["https://github.com/MSKazemi/yazses","https://pypi.org/project/yazses/","https://snapcraft.io/yazses","https://doi.org/10.5281/zenodo.21856271","https://arxiv.org/abs/2607.28878","https://www.wikidata.org/wiki/Q140935593","https://mskazemi.com/yazses/"]},
+{"@type":"Person","@id":"https://responsiblesystemslab.org/#person-msa","name":"Mohsen Seyedkazemi Ardebili","sameAs":["https://orcid.org/0000-0002-1166-6559","https://github.com/MSKazemi","https://mskazemi.github.io"]},
+{"@type":"WebPage","@id":"https://responsiblesystemslab.org/yazses.html#webpage","url":"https://responsiblesystemslab.org/yazses.html","name":"YazSes — offline voice dictation","isPartOf":{"@id":"https://responsiblesystemslab.org/#website"},"about":{"@id":"https://responsiblesystemslab.org/yazses.html#software"},"dateModified":"2026-10-10",
+ "breadcrumb":{"@type":"BreadcrumbList","itemListElement":[
+   {"@type":"ListItem","position":1,"name":"Home","item":"https://responsiblesystemslab.org/"},
+   {"@type":"ListItem","position":2,"name":"Projects","item":"https://responsiblesystemslab.org/projects.html"},
+   {"@type":"ListItem","position":3,"name":"YazSes"}]}}
+]}
+</script>
+</head>
+<body style="--accent:#5e35b1; --accent-deep:#4527a0;">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <g id="rsl-mark">
+    <path d="M20 3 L33 10.5 V25.5 L20 33 L7 25.5 V10.5 Z" fill="none" stroke="#155C9E" stroke-width="2.2" stroke-linejoin="round"/>
+    <path d="M13.5 19.5 l4.5 4.5 L27 13.5" fill="none" stroke="#00A3A3" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="33" cy="10.5" r="1.9" fill="#4CAF6A"/><circle cx="7" cy="25.5" r="1.6" fill="#155C9E"/>
+  </g>
+</defs></svg>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="header">
+  <div class="container nav">
+    <a class="brand" href="index.html" aria-label="Responsible Systems Lab home">
+      <svg class="mark" viewBox="0 0 40 40"><use href="#rsl-mark"/></svg>
+      <span>Responsible Systems Lab<small>Research · Responsibility · Real-world impact</small></span>
+    </a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="approach.html">Approach</a></li>
+        <li><a href="index.html#mission">Mission</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero hero-compact hero-accent">
+  <div class="container hero-grid">
+    <div>
+      <p class="crumb reveal"><a href="index.html">Home</a> · <a href="projects.html">Projects</a> · YazSes</p>
+      <span class="hero-tag reveal"><span class="dot"></span> Active · open source · Apache-2.0</span>
+      <h1 class="reveal d1">YazSes — your voice, <em>typed on your own machine</em>.</h1>
+      <p class="hero-sub reveal d2">Hold a key, speak, release — and the words appear in whatever window has focus. The speech never reaches a server: it is transcribed on your own CPU, so privacy is a property of the architecture rather than a promise in a policy. Nothing leaves the machine by default; there is no account and no API key.</p>
+      <div class="hero-actions reveal d3">
+        <a class="btn btn-teal" href="https://mskazemi.com/yazses/" rel="noopener">Documentation &amp; install
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="https://github.com/MSKazemi/yazses" rel="noopener">Source on GitHub</a>
+      </div>
+    </div>
+  </div>
+  <svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0,30 C240,80 480,0 720,35 C960,70 1200,10 1440,45 L1440,90 L0,90 Z"></path></svg>
+</section>
+
+<!-- ============ WHAT IT DOES + FACTS ============ -->
+<section>
+  <div class="container">
+    <div class="project reveal">
+      <div>
+        <div class="p-meta">
+          <span class="badge badge-active">Active</span>
+          <span class="p-cat">Project · Privacy &amp; accessibility</span>
+        </div>
+        <h3>What it does</h3>
+        <p>YazSes is a voice human–computer interaction layer, not only a dictation box. It does three things, all on your own CPU:</p>
+        <ul class="prose" style="padding-left:1.1rem;">
+          <li><strong>Dictate</strong> — hold a key, speak, release; the text is typed into the focused editor, browser, terminal or chat window. Spoken editor and terminal commands (<em>“undo that”</em>, <em>“go to line 42”</em>) are recognised as commands rather than typed as text.</li>
+          <li><strong>Transcribe a file</strong> — <code>yazses transcribe interview.m4a</code> returns a transcript of any audio or video file, optionally tagged with who said what, as txt, md, srt, vtt or json.</li>
+          <li><strong>Capture a meeting</strong> — <code>yazses meeting start</code> produces a speaker-labelled transcript and, optionally, minutes written by a local language model. Speaker names come from voiceprints you enroll yourself, never from a cloud account.</li>
+        </ul>
+        <span class="code-line">pipx install yazses &amp;&amp; yazses quickstart</span>
+      </div>
+      <div class="p-side">
+        <ul class="spec">
+          <li><span class="k">Version</span><span class="v">2.42.0</span></li>
+          <li><span class="k">Licence</span><span class="v">Apache-2.0</span></li>
+          <li><span class="k">Platforms</span><span class="v">Linux · macOS · Windows</span></li>
+          <li><span class="k">Speech engine</span><span class="v">faster-whisper, CPU int8</span></li>
+          <li><span class="k">Tests</span><span class="v">14,800+</span></li>
+          <li><span class="k">Contributors</span><span class="v">35</span></li>
+          <li><span class="k">Source</span><span class="v"><a href="https://github.com/MSKazemi/yazses" rel="noopener">GitHub</a></span></li>
+          <li><span class="k">Package</span><span class="v"><a href="https://pypi.org/project/yazses/" rel="noopener">PyPI</a> · <a href="https://snapcraft.io/yazses" rel="noopener">Snap</a></span></li>
+          <li><span class="k">Archived release</span><span class="v"><a href="https://doi.org/10.5281/zenodo.21856271" rel="noopener">10.5281/zenodo.21856271</a></span></li>
+          <li><span class="k">Paper</span><span class="v"><a href="https://arxiv.org/abs/2607.28878" rel="noopener">arXiv:2607.28878</a></span></li>
+          <li><span class="k">Wikidata</span><span class="v"><a href="https://www.wikidata.org/wiki/Q140935593" rel="noopener">Q140935593</a></span></li>
+          <li><span class="k">Docs</span><span class="v"><a href="https://mskazemi.com/yazses/" rel="noopener">mskazemi.com/yazses</a></span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY WE BUILD THIS ============ -->
+<section class="section-mist">
+  <div class="container split">
+    <div class="reveal">
+      <span class="eyebrow">Why this is a Responsible Systems Lab project</span>
+      <p class="mission-statement">Responsibility here is an architectural property, not a policy page.</p>
+    </div>
+    <div class="reveal d1 prose">
+      <p>Dictation is one of the most intimate things software can touch. To use most of it, you send a recording of your own voice — a medical conversation, a legal matter, a confidential meeting, a first draft you are not ready to show anyone — to a company's servers, and then trust a privacy policy about what happens next.</p>
+      <p>YazSes removes the need for that trust rather than asking for it. There is no network call in the dictation path, so there is no server to be breached, no retention policy to change, no account to be sold with the company. That is the distinction this lab cares about: a guarantee you can verify by reading the source and watching your own network interface, instead of a guarantee you have to take on faith.</p>
+      <h3>Accessibility is part of the same commitment</h3>
+      <p>Two features exist for people that mainstream dictation tends to serve badly:</p>
+      <ul>
+        <li><strong>Dysfluency-Friendly Mode</strong> — an opt-in collapse of stutters and repeats (<code>b-b-because</code> → <code>because</code>) for stuttered or dysarthric speech, which most speech-to-text transcribes literally or discards.</li>
+        <li><strong>EMG trigger support</strong> — YazSes can be triggered by a USB muscle sensor rather than a keypress, for hands-free use by people with motor disabilities.</li>
+      </ul>
+      <p>Neither feature enlarges the addressable market much. Both are the reason the project is worth doing.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT IT IS NOT ============ -->
+<section>
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Stated limits</span>
+      <h2>What YazSes deliberately is not.</h2>
+      <p>Being specific about what a system cannot do is part of what makes claims about what it can do worth anything. YazSes is <strong>not</strong> recommended if you need:</p>
+    </div>
+    <div class="prose reveal d1">
+      <ul class="limits">
+        <li><strong>A conversational AI agent.</strong> YazSes dictates text and runs editor and terminal voice commands. It does not browse, reason over your files, or hold a conversation. An agentic version was prototyped in an archived branch and is not shipped.</li>
+        <li><strong>Non-English languages out of the box.</strong> The default model is English-only. Other languages need a multilingual model and explicit configuration, and accuracy is honestly described as usable but still rough.</li>
+        <li><strong>A mobile or web app.</strong> It is a desktop daemon. An Android implementation is in design, not released.</li>
+        <li><strong>The lowest possible word-error rate on a noisy microphone.</strong> A cloud speech service may still beat CPU faster-whisper there. The trade-off is that nothing leaves your machine.</li>
+      </ul>
+      <blockquote>Of the 148 documented capabilities in the current development roadmap, 103 are wired and 45 are marked “planned” in public rather than described as if they already worked.</blockquote>
+      <p>The same discipline applies to the privacy claim itself. Dictation makes no network call and writes no audio to disk. Meeting capture is different: it writes a recording to disk while it runs, and deletes it after transcription unless you ask to keep it. Both stay on your machine — but they are not the same claim, and this page will not flatten them into one.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section-mist">
+  <div class="container">
+    <div class="contact-card reveal">
+      <h2>Use it, or help build it.</h2>
+      <p>YazSes is free and open source under Apache-2.0, maintained in the open with 35 listed contributors. Issues, fixes, translations and platform testing are all welcome.</p>
+      <a class="btn btn-teal" href="https://github.com/MSKazemi/yazses" rel="noopener">Open the repository
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand"><svg class="mark" viewBox="0 0 40 40"><use href="#rsl-mark"/></svg> Responsible Systems Lab</div>
+        <p class="footer-status">An independent applied research and innovation initiative focused on safer, more humane, and more accountable technology systems. Responsible Systems Lab is an informal interdisciplinary project group and is <strong>not currently a registered company, nonprofit, foundation, or public institution</strong>. YazSes is an independent open-source project developed within the lab by Mohsen Seyedkazemi Ardebili; its copyright and Apache-2.0 licence rest with its authors and contributors.</p>
+      </div>
+      <div class="footer-cols">
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="approach.html">Approach</a></li>
+            <li><a href="index.html#mission">Mission</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>YazSes</h4>
+          <ul>
+            <li><a href="https://mskazemi.com/yazses/" rel="noopener">Documentation</a></li>
+            <li><a href="https://github.com/MSKazemi/yazses" rel="noopener">GitHub</a></li>
+            <li><a href="https://pypi.org/project/yazses/" rel="noopener">PyPI</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Responsible Systems Lab.</span>
+      <span class="updated">Page last updated 10 October 2026.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="scripts/site.js?v=20261010a"></script>
+</body>
+</html>
