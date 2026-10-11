@@ -8,7 +8,7 @@
 <meta name="description" content="Contact Responsible Systems Lab: collaboration, advisory, project questions, security reports and criticism of our reasoning are all welcome." />
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M20 3 L33 10.5 V25.5 L20 33 L7 25.5 V10.5 Z' fill='none' stroke='%23155C9E' stroke-width='2.4' stroke-linejoin='round'/%3E%3Cpath d='M13.5 19.5 l4.5 4.5 L27 13.5' fill='none' stroke='%2300A3A3' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
 <link rel="preload" href="assets/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="stylesheet" href="styles/rsl.css?v=20261011d" />
+<link rel="stylesheet" href="styles/rsl.css?v=20261011e" />
 <link rel="canonical" href="https://responsiblesystemslab.org/contact.html" />
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 <meta property="og:type" content="website" />
@@ -32,6 +32,7 @@
 </script>
 </head>
 <body>
+<a class="skip-link" href="#top">Skip to content</a>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
   <g id="rsl-mark">
@@ -60,15 +61,15 @@
   </div>
 </header>
 
-<main id="top">
+<main id="top" tabindex="-1">
 
 <section class="hero hero-compact">
   <div class="container hero-grid">
     <div>
       <p class="crumb reveal"><a href="index.html">Home</a> · Contact</p>
       <span class="hero-tag reveal"><span class="dot"></span> Contact</span>
-      <h1 class="reveal d1">Write to us. <em>A person</em> reads it.</h1>
-      <p class="hero-sub reveal d2">Name, email, message. That is all we need.</p>
+      <h1 class="reveal d1">Have an idea worth <em>examining together?</em></h1>
+      <p class="hero-sub reveal d2">Name, email, message. That is all we need. A person reads every message.</p>
     </div>
   </div>
   <svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0,30 C240,80 480,0 720,35 C960,70 1200,10 1440,45 L1440,90 L0,90 Z"></path></svg>
@@ -87,13 +88,13 @@
         <input id="cf-name" name="name" type="text" autocomplete="name" required />
         <label for="cf-email">Your email</label>
         <input id="cf-email" name="email" type="email" autocomplete="email" required />
-        <label for="cf-topic">Topic <span class="optional">(optional)</span></label>
-        <select id="cf-topic" name="topic">
-          <option value="General question">General question</option>
-          <option value="Research collaboration">Research collaboration</option>
-          <option value="Open-source contribution">Open-source contribution</option>
-          <option value="Responsible disclosure">Responsible disclosure (security)</option>
-        </select>
+        <fieldset class="paths">
+          <legend>What is this about? <span class="optional">(optional)</span></legend>
+          <div class="path"><input type="radio" id="cf-t1" name="topic" value="Research collaboration" /><label for="cf-t1">Research collaboration<small>Study or build something together</small></label></div>
+          <div class="path"><input type="radio" id="cf-t2" name="topic" value="Open-source contribution" /><label for="cf-t2">Open-source contribution<small>Code, docs, review or tests</small></label></div>
+          <div class="path"><input type="radio" id="cf-t3" name="topic" value="Responsible disclosure" /><label for="cf-t3">Responsible disclosure<small>A security or safety issue</small></label></div>
+          <div class="path"><input type="radio" id="cf-t4" name="topic" value="General question" checked /><label for="cf-t4">General question<small>Anything else</small></label></div>
+        </fieldset>
         <label for="cf-msg">Message</label>
         <textarea id="cf-msg" name="message" rows="7" required></textarea>
         <input id="cf-website" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px" />
@@ -143,6 +144,6 @@
   </div>
 </footer>
 
-<script src="scripts/site.js?v=20261011d"></script>
+<script src="scripts/site.js?v=20261011e"></script>
 </body>
 </html>

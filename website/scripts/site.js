@@ -23,6 +23,15 @@
       toggle.setAttribute("aria-expanded", String(expanded));
       toggle.setAttribute("aria-label", expanded ? "Close menu" : "Open menu");
     });
+    var closeMenu = function (returnFocus) {
+      header.classList.remove("open");
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.setAttribute("aria-label", "Open menu");
+      if (returnFocus) toggle.focus();
+    };
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && header.classList.contains("open")) closeMenu(true);
+    });
     header.querySelectorAll(".nav-links a").forEach(function (a) {
       a.addEventListener("click", function () {
         header.classList.remove("open");
@@ -73,6 +82,31 @@
     var target = (l.getAttribute("href") || "").split("#")[0].split("/").pop();
     if (target === current) l.classList.add("active");
   });
+  // Evidence Atlas (home): highlight the principles a project emphasizes on hover or keyboard focus.
+  // Progressive enhancement only: the map and the project links are fully usable without it.
+  var atlas = document.querySelector(".atlas");
+  if (atlas) {
+    var clearAtlas = function () {
+      atlas.classList.remove("has-active");
+      atlas.querySelectorAll(".on").forEach(function (n) { n.classList.remove("on"); });
+    };
+    var setAtlas = function (a) {
+      clearAtlas();
+      var node = a.getAttribute("data-node");
+      var links = (a.getAttribute("data-links") || "").split(" ");
+      atlas.classList.add("has-active");
+      var n = atlas.querySelector('[data-node="' + node + '"]'); if (n) n.classList.add("on");
+      links.forEach(function (k) {
+        var pr = atlas.querySelector('[data-principle="' + k + '"]'); if (pr) pr.classList.add("on");
+        var ed = atlas.querySelector('[data-edge="' + node + "-" + k + '"]'); if (ed) ed.classList.add("on");
+      });
+    };
+    atlas.querySelectorAll(".atlas-list a").forEach(function (a) {
+      ["mouseenter", "focus"].forEach(function (ev) { a.addEventListener(ev, function () { setAtlas(a); }); });
+      ["mouseleave", "blur"].forEach(function (ev) { a.addEventListener(ev, clearAtlas); });
+    });
+  }
+
   // Contact form: static site, so it posts to Web3Forms, which emails the lab.
   // The access key is public by design (it can only deliver to the registered inbox).
   // A mailto: link is offered on failure but is never opened automatically and is never
@@ -100,7 +134,7 @@
     cf.addEventListener("submit", function (e) {
       e.preventDefault();
       if (document.getElementById("cf-website").value) return; // honeypot: humans never see it
-      var topicEl = document.getElementById("cf-topic");
+      var topicEl = cf.querySelector('input[name="topic"]:checked');
       var f = {
         name: document.getElementById("cf-name").value.trim(),
         email: document.getElementById("cf-email").value.trim(),

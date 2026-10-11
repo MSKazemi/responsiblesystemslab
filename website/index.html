@@ -8,7 +8,7 @@
 <meta name="description" content="Independent research and open-source engineering for responsible AI, agent replay, verification, privacy-preserving voice computing and human control." />
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M20 3 L33 10.5 V25.5 L20 33 L7 25.5 V10.5 Z' fill='none' stroke='%23155C9E' stroke-width='2.4' stroke-linejoin='round'/%3E%3Cpath d='M13.5 19.5 l4.5 4.5 L27 13.5' fill='none' stroke='%2300A3A3' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
 <link rel="preload" href="assets/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="stylesheet" href="styles/rsl.css?v=20261011d" />
+<link rel="stylesheet" href="styles/rsl.css?v=20261011e" />
 <link rel="canonical" href="https://responsiblesystemslab.org/" />
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 <meta property="og:type" content="website" />
@@ -34,6 +34,7 @@
 </script>
 </head>
 <body>
+<a class="skip-link" href="#top">Skip to content</a>
 
 <!-- logo mark (reused) -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
@@ -63,14 +64,15 @@
   </div>
 </header>
 
-<main id="top">
+<main id="top" tabindex="-1">
 
 <!-- ============ HERO ============ -->
-<section class="hero" id="hero">
+<section class="hero hero-v2" id="hero">
   <div class="container hero-grid">
     <div>
       <span class="hero-tag reveal"><span class="dot"></span> A small, early-stage research initiative</span>
       <h1 class="reveal d1">Technology with <em>responsibility</em> built in.</h1>
+      <p class="hero-kicker reveal d1">Build systems. <span>Make them verifiable.</span></p>
       <p class="hero-sub reveal d2">Responsible Systems Lab is a small, independent, early-stage research initiative developing research-driven prototypes for safer, more humane, and more accountable technology systems — working across software, AI, sensing, cloud, and human-centered design to help protect people, children, animals, and ecosystems in an increasingly automated world.</p>
       <div class="hero-actions reveal d3">
         <a class="btn btn-teal" href="projects.html">See what we build
@@ -79,20 +81,47 @@
         <a class="btn btn-ghost" href="approach.html">How we work</a>
       </div>
     </div>
-    <div class="hero-art reveal d2" aria-hidden="true">
-      <svg viewBox="0 0 320 320" fill="none">
-        <path d="M160 28 L268 90 V214 L160 276 L52 214 V90 Z" stroke="rgba(255,255,255,0.25)" stroke-width="2"/>
-        <path d="M160 64 L236 108 V196 L160 240 L84 196 V108 Z" stroke="rgba(111,227,224,0.6)" stroke-width="2.5" stroke-linejoin="round"/>
-        <path d="M120 158 l28 28 L210 124" stroke="#6fe3e0" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-        <g stroke="rgba(255,255,255,0.4)" stroke-width="1.6">
-          <path d="M160 64 V28 M236 108 L268 90 M236 196 L268 214 M160 240 V276 M84 196 L52 214 M84 108 L52 90"/>
-        </g>
-        <g fill="#4CAF6A"><circle cx="268" cy="90" r="5"/><circle cx="52" cy="214" r="5"/></g>
-        <g fill="#6fe3e0"><circle cx="160" cy="28" r="4"/><circle cx="268" cy="214" r="4"/><circle cx="52" cy="90" r="4"/></g>
-      </svg>
+    <div class="hero-art">
+      <figure class="atlas reveal d2">
+        <svg viewBox="0 0 520 340" fill="none" aria-hidden="true" focusable="false">
+        <path class="edge" data-edge="yaz-priv" d="M70 152 C70 100 70 100 70 48"/>
+        <path class="edge" data-edge="nova-trace" d="M185 152 C185 100 235 100 235 48"/>
+        <path class="edge" data-edge="reach-trace" d="M330 152 C330 100 235 100 235 48"/>
+        <path class="edge" data-edge="idk-veri" d="M455 152 C455 100 420 100 420 48"/>
+        <path class="edge" data-edge="nova-rev" d="M185 188 C185 237 185 237 185 286"/>
+        <path class="edge" data-edge="idk-rev" d="M455 188 C455 237 185 237 185 286"/>
+        <path class="edge" data-edge="reach-hum" d="M330 188 C330 237 390 237 390 286"/>
+        <path class="edge" data-edge="idk-hum" d="M455 188 C455 237 390 237 390 286"/>
+        <g class="p-node" data-principle="priv"><rect x="20" y="20" width="100" height="28" rx="14"/><text x="70" y="38" text-anchor="middle">Privacy</text></g>
+        <g class="p-node" data-principle="trace"><rect x="176" y="20" width="118" height="28" rx="14"/><text x="235" y="38" text-anchor="middle">Traceability</text></g>
+        <g class="p-node" data-principle="veri"><rect x="361" y="20" width="118" height="28" rx="14"/><text x="420" y="38" text-anchor="middle">Verification</text></g>
+        <g class="p-node" data-principle="rev"><rect x="141" y="286" width="88" height="28" rx="14"/><text x="185" y="304" text-anchor="middle">Review</text></g>
+        <g class="p-node" data-principle="hum"><rect x="315" y="286" width="150" height="28" rx="14"/><text x="390" y="304" text-anchor="middle">Human oversight</text></g>
+        <g class="j-node j-yaz" data-node="yaz"><rect x="25" y="152" width="90" height="36" rx="18"/><text x="70" y="175" text-anchor="middle">YazSes</text></g>
+        <g class="j-node j-nova" data-node="nova"><rect x="127" y="152" width="116" height="36" rx="18"/><text x="185" y="175" text-anchor="middle">NovaFabric</text></g>
+        <g class="j-node j-reach" data-node="reach"><rect x="270" y="152" width="120" height="36" rx="18"/><text x="330" y="175" text-anchor="middle">ReachWeaver</text></g>
+        <g class="j-node j-idk" data-node="idk"><rect x="409" y="152" width="92" height="36" rx="18"/><text x="455" y="175" text-anchor="middle">IDKMesh</text></g>
+        </svg>
+        <ul class="atlas-list">
+          <li><a href="novafabric.html" data-node="nova" data-links="trace rev"><strong>NovaFabric</strong><span>Traceability · Review</span></a></li>
+          <li><a href="idkmesh.html" data-node="idk" data-links="veri rev hum"><strong>IDKMesh</strong><span>Verification · Review · Human oversight</span></a></li>
+          <li><a href="yazses.html" data-node="yaz" data-links="priv"><strong>YazSes</strong><span>Privacy</span></a></li>
+          <li><a href="reachweaver.html" data-node="reach" data-links="hum trace"><strong>ReachWeaver</strong><span>Human oversight · Traceability</span></a></li>
+        </ul>
+        <figcaption>Conceptual map, not live data. Each project connects to the principles its own public description emphasizes.</figcaption>
+      </figure>
     </div>
   </div>
   <svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0,30 C240,80 480,0 720,35 C960,70 1200,10 1440,45 L1440,90 L0,90 Z"></path></svg>
+</section>
+
+<!-- ============ PROOF / LIMITS ============ -->
+<section class="proof" aria-label="What this lab is and is not">
+  <div class="container proof-grid">
+    <div class="proof-item"><span class="mono">Status</span><p>Informal, independent and early-stage. Not a company, nonprofit, foundation or institution.</p></div>
+    <div class="proof-item"><span class="mono">Four projects</span><p>One released, one released beta, one research alpha and one experimental. Each is labeled on its own page.</p></div>
+    <div class="proof-item"><span class="mono">Source</span><p>Three of the four have public repositories you can inspect. ReachWeaver’s source is private.</p></div>
+  </div>
 </section>
 
 <!-- ============ MISSION ============ -->
@@ -271,11 +300,12 @@
 <section id="contact">
   <div class="container">
     <div class="contact-card reveal">
-      <h2>Let's build responsible systems together.</h2>
-      <p>We welcome collaboration, advisors, and partners across responsible AI, sensing, verification, and human-centered design.</p>
-      <a class="btn btn-teal" href="mailto:contact@responsiblesystemslab.org">Get in touch
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16v12H4z M4 7l8 6 8-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h2>Have an idea worth examining together?</h2>
+      <p>We welcome research collaboration, open-source contributions, responsible-disclosure reports and plain questions. A person reads every message.</p>
+      <a class="btn btn-teal" href="contact.html">Write to us
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
+      <p class="form-note" style="margin-top:1.1rem;color:rgba(255,255,255,0.85)">Prefer email? <a href="mailto:contact@responsiblesystemslab.org" style="text-decoration:underline">contact@responsiblesystemslab.org</a></p>
     </div>
   </div>
 </section>
@@ -318,6 +348,6 @@
   </div>
 </footer>
 
-<script src="scripts/site.js?v=20261011d"></script>
+<script src="scripts/site.js?v=20261011e"></script>
 </body>
 </html>
