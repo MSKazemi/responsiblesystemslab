@@ -75,45 +75,66 @@
   });
   // Contact form: static site, so it posts to Web3Forms, which emails the lab.
   // The access key is public by design (it can only deliver to the registered inbox).
+  // A mailto: link is offered on failure but is never opened automatically and is never
+  // presented as a sent message.
   var WEB3FORMS_KEY = "4e91ba09-fefa-4514-bbff-a6e6b35fe61d";
+  var CONTACT_EMAIL = "contact@responsiblesystemslab.org";
+  var SEND_TIMEOUT_MS = 15000;
   var cf = document.getElementById("contactForm");
   if (cf) {
     var status = document.getElementById("cfStatus");
     var btn = cf.querySelector("button[type=submit]");
     var say = function (t, ok) { status.textContent = t; status.className = "form-note " + (ok ? "form-ok" : "form-err"); };
-    var viaMailto = function (f) {
-      window.location.href = "mailto:contact@responsiblesystemslab.org?subject=" +
-        encodeURIComponent("[RSL] Message from " + f.name) +
+    var fail = function (reason, f) {
+      // Keep what the visitor typed, explain plainly, and offer an explicit way out.
+      status.className = "form-note form-err";
+      status.textContent = reason + " Your message was not sent. You can try again, or ";
+      var a = document.createElement("a");
+      a.href = "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent("[RSL] Message from " + f.name) +
         "&body=" + encodeURIComponent(f.message + "\n\n--\n" + f.name + " <" + f.email + ">");
+      a.textContent = "email " + CONTACT_EMAIL + " directly";
+      status.appendChild(a);
+      status.appendChild(document.createTextNode(" (this opens your own email app; nothing is sent until you send it)."));
+      btn.disabled = false;
     };
     cf.addEventListener("submit", function (e) {
       e.preventDefault();
+      if (document.getElementById("cf-website").value) return; // honeypot: humans never see it
+      var topicEl = document.getElementById("cf-topic");
       var f = {
         name: document.getElementById("cf-name").value.trim(),
         email: document.getElementById("cf-email").value.trim(),
-        message: document.getElementById("cf-msg").value.trim()
+        message: document.getElementById("cf-msg").value.trim(),
+        topic: topicEl ? topicEl.value : "General question"
       };
-      if (document.getElementById("cf-website").value) return; // honeypot: humans never see it
-      if (WEB3FORMS_KEY.indexOf("REPLACE") === 0) { viaMailto(f); return; }
+      if (!f.name || !f.email || !f.message) { say("Please fill in your name, email and message.", false); return; }
       btn.disabled = true; say("Sending…", true);
+      var ctl = typeof AbortController === "function" ? new AbortController() : null;
+      var timer = ctl ? setTimeout(function () { ctl.abort(); }, SEND_TIMEOUT_MS) : null;
       fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
+        signal: ctl ? ctl.signal : undefined,
         body: JSON.stringify({
           access_key: WEB3FORMS_KEY,
-          subject: "[RSL] Message from " + f.name,
+          subject: "[RSL] " + f.topic + " — message from " + f.name,
           from_name: "Responsible Systems Lab website",
-          name: f.name, email: f.email, message: f.message
+          name: f.name, email: f.email, topic: f.topic, message: f.message
         })
       })
-        .then(function (r) { return r.json(); })
-        .then(function (j) {
-          if (j && j.success) { cf.reset(); say("Thank you — your message was sent.", true); }
-          else { say("Could not send. Please email contact@responsiblesystemslab.org.", false); }
-          btn.disabled = false;
+        .then(function (r) {
+          if (r.status >= 500) { throw new Error("server"); }
+          return r.json().catch(function () { throw new Error("format"); });
         })
-        .catch(function () {
-          say("Could not send. Opening your email app instead…", false); btn.disabled = false; viaMailto(f);
+        .then(function (j) {
+          if (timer) clearTimeout(timer);
+          if (j && j.success) { cf.reset(); btn.disabled = false; say("Thank you — your message was sent.", true); }
+          else { fail("The message service did not accept it.", f); }
+        })
+        .catch(function (err) {
+          if (timer) clearTimeout(timer);
+          var offline = typeof navigator !== "undefined" && navigator.onLine === false;
+          fail(offline ? "You appear to be offline." : (err && err.name === "AbortError" ? "The request timed out." : "We could not reach the message service."), f);
         });
     });
   }
