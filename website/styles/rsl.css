@@ -396,3 +396,26 @@ main:focus { outline: none; }
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
   .btn:hover, .maturity a:hover, .focus-card:hover { transform: none !important; }
 }
+
+/* ---------- Project detail pages (Phase 04): at-a-glance, today vs not established, evidence ---------- */
+.detail-top { display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 3rem; align-items: start; }
+.glance { background: var(--mist); border: 1px solid var(--border); border-radius: var(--r-md); padding: 1.3rem 1.4rem; }
+.section-mist .glance { background: var(--white); }
+.glance .mono { display: block; color: var(--teal-ink); font-weight: 700; margin-bottom: 0.5rem; }
+.today-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+.today-grid h3 { font-size: 1.05rem; margin-bottom: 0.9rem; }
+.today-grid .mono { display: block; margin-bottom: 0.35rem; font-weight: 700; }
+.today-grid .exists .mono { color: var(--green-ink); } .today-grid .not .mono { color: #9A620F; }
+.checks { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.7rem; }
+.checks li { position: relative; padding-left: 1.7rem; color: var(--navy); font-size: 0.98rem; line-height: 1.5; }
+.checks li::before { content: ""; position: absolute; left: 0; top: 0.35em; width: 0.9em; height: 0.5em; border-left: 2.5px solid var(--green); border-bottom: 2.5px solid var(--green); transform: rotate(-45deg) scale(0.8); }
+.not .limits li { color: var(--navy); }
+.not .limits li::before { background: #9A620F; }
+.evidence-links { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.7rem; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); }
+.evidence-links a { display: block; height: 100%; padding: 1rem 1.1rem; border: 1px solid var(--border); border-radius: var(--r-md); background: var(--white); transition: border-color 0.2s var(--ease), transform 0.25s var(--ease); }
+.evidence-links a:hover, .evidence-links a:focus-visible { border-color: var(--blue); transform: translateY(-2px); }
+.evidence-links strong { display: block; color: var(--blue); }
+.evidence-links span { display: block; font-size: 0.86rem; color: var(--slate); margin-top: 0.2rem; }
+.evidence-note { color: var(--slate); font-size: 0.95rem; max-width: 62ch; }
+@media (max-width: 920px) { .detail-top, .today-grid { grid-template-columns: 1fr; gap: 1.6rem; } }
+@media (prefers-reduced-motion: reduce) { .evidence-links a:hover { transform: none !important; } }
