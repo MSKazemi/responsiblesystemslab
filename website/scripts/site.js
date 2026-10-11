@@ -75,7 +75,7 @@
   });
   // Contact form: static site, so it posts to Web3Forms, which emails the lab.
   // The access key is public by design (it can only deliver to the registered inbox).
-  var WEB3FORMS_KEY = "REPLACE_WITH_WEB3FORMS_KEY";
+  var WEB3FORMS_KEY = "4e91ba09-fefa-4514-bbff-a6e6b35fe61d";
   var cf = document.getElementById("contactForm");
   if (cf) {
     var status = document.getElementById("cfStatus");
