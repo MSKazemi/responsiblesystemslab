@@ -300,3 +300,99 @@ code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, mo
 .form-note { color: var(--slate); font-size: 0.95rem; margin-top: 1rem; }
 
 .form-ok{color:#1b7a3d}.form-err{color:#b3261e}
+
+/* =====================================================================
+   Evidence Atlas V2 — design-system layer (Phase 02/03)
+   Additive: uses the existing brand tokens; replaces nothing. The logo is unchanged.
+   Accessible text aliases come from docs/brand/evidence-atlas-v2-brand-guide.md.
+   ===================================================================== */
+:root {
+  --ink: #071328;            /* darker hero foundation */
+  --teal-ink: #006B6B;       /* teal text on light (6.3:1 on white) */
+  --green-ink: #246B3C;      /* green text on light */
+  --teal-on-dark: #A6ECE6;   /* pale teal text on navy (12.7:1) */
+  --mono: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --node-nova: #6fe3e0; --node-idk: #8ec5ff; --node-yaz: #c9b6ff; --node-reach: #ffd08a;
+}
+
+/* Keyboard focus: one consistent, visible ring on light and dark surfaces. */
+:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; border-radius: 4px; }
+.hero :focus-visible, .site-footer :focus-visible, .contact-card :focus-visible { outline-color: var(--teal-on-dark); }
+main:focus { outline: none; }
+
+/* Skip link: first focusable element on every page. */
+.skip-link { position: absolute; left: 1rem; top: -4rem; z-index: 200; background: var(--navy); color: var(--white);
+  padding: 0.7rem 1.1rem; border-radius: var(--r-sm); font-weight: 700; transition: top 0.2s var(--ease); }
+.skip-link:focus { top: 0.8rem; }
+
+/* Micro-labels: system monospace, no extra font download. */
+.mono { font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.hero-kicker { font-family: var(--mono); font-size: clamp(0.82rem, 1.6vw, 1rem); letter-spacing: 0.04em; color: var(--teal-on-dark); margin: -0.2rem 0 1.1rem; }
+.hero-kicker span { color: var(--white); }
+
+/* ---------- Hero Evidence Atlas (conceptual map + real link list) ---------- */
+.atlas { margin: 0; display: grid; gap: 0.9rem; justify-items: center; }
+.atlas svg { width: 100%; max-width: 500px; height: auto; overflow: visible; }
+.atlas .edge { stroke: rgba(255,255,255,0.16); stroke-width: 1.2; transition: stroke 0.25s var(--ease), stroke-width 0.25s var(--ease); }
+.atlas .ring { fill: none; stroke: rgba(255,255,255,0.10); stroke-width: 1; stroke-dasharray: 2 6; }
+.atlas .p-node rect { fill: rgba(255,255,255,0.06); stroke: rgba(255,255,255,0.28); stroke-width: 1.2; transition: fill 0.25s var(--ease), stroke 0.25s var(--ease); }
+.atlas .p-node text { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; fill: rgba(255,255,255,0.78); text-transform: uppercase; transition: fill 0.25s var(--ease); }
+.atlas .j-node rect { fill: var(--ink); stroke-width: 2; transition: fill 0.25s var(--ease); }
+.atlas .j-node text { font-weight: 800; font-size: 14px; fill: var(--white); }
+.atlas .j-nova rect { stroke: var(--node-nova); } .atlas .j-idk rect { stroke: var(--node-idk); }
+.atlas .j-yaz rect { stroke: var(--node-yaz); } .atlas .j-reach rect { stroke: var(--node-reach); stroke-dasharray: 4 3; }
+.atlas.has-active .edge { stroke: rgba(255,255,255,0.06); }
+.atlas.has-active .edge.on { stroke: var(--teal-on-dark); stroke-width: 2.4; }
+.atlas.has-active .p-node:not(.on) { opacity: 0.4; } .atlas.has-active .j-node:not(.on) { opacity: 0.45; }
+.atlas .p-node.on rect { fill: rgba(166,236,230,0.16); stroke: var(--teal-on-dark); }
+.atlas .p-node.on text { fill: var(--white); }
+.atlas .j-node.on rect { fill: #0f2a4d; }
+.atlas-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.6rem; width: 100%; max-width: 500px; }
+.atlas-list a { display: block; padding: 0.7rem 0.9rem; border: 1px solid rgba(255,255,255,0.22); border-radius: var(--r-sm);
+  background: rgba(255,255,255,0.05); color: var(--white); transition: background 0.2s var(--ease), border-color 0.2s var(--ease); }
+.atlas-list a:hover, .atlas-list a:focus-visible { background: rgba(166,236,230,0.14); border-color: var(--teal-on-dark); }
+.atlas-list strong { display: block; font-size: 0.98rem; }
+.atlas-list span { display: block; font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--teal-on-dark); line-height: 1.4; margin-top: 0.15rem; }
+.atlas figcaption { font-size: 0.78rem; color: rgba(255,255,255,0.78); max-width: 46ch; text-align: center; }
+
+/* ---------- Proof / limits strip ---------- */
+.proof { padding: 0; background: var(--mist); border-bottom: 1px solid var(--border); }
+.proof-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+.proof-item { padding: 1.6rem 1.6rem 1.6rem 0; }
+.proof-item + .proof-item { padding-left: 1.6rem; border-left: 1px solid var(--border); }
+.proof-item .mono { color: var(--teal-ink); display: block; margin-bottom: 0.4rem; font-weight: 700; }
+.proof-item p { margin: 0; color: var(--navy); font-size: 0.98rem; line-height: 1.5; }
+
+/* ---------- Contact: inquiry paths (radio cards, native semantics) ---------- */
+.paths { border: 0; margin: 0.9rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.6rem; }
+.paths legend { font-weight: 600; font-size: 0.92rem; color: var(--navy); padding: 0; margin-bottom: 0.4rem; }
+.path { position: relative; }
+.path input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.path label { display: block; margin: 0; padding: 0.75rem 0.9rem; border: 1px solid var(--border); border-radius: var(--r-sm); background: var(--white);
+  font-weight: 600; font-size: 0.92rem; line-height: 1.3; transition: border-color 0.2s var(--ease), background 0.2s var(--ease); }
+.path label small { display: block; font-weight: 400; color: var(--slate); font-size: 0.8rem; margin-top: 0.15rem; }
+.path input:checked + label { border-color: var(--blue); background: rgba(21,92,158,0.06); box-shadow: inset 0 0 0 1px var(--blue); }
+.path input:focus-visible + label { outline: 3px solid var(--teal); outline-offset: 2px; }
+
+/* ---------- Project maturity overview (Projects page) ---------- */
+.maturity { list-style: none; margin: 0 0 2.4rem; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8rem; }
+.maturity a { display: block; height: 100%; padding: 1rem 1.1rem; border: 1px solid var(--border); border-radius: var(--r-md); background: var(--white);
+  transition: border-color 0.2s var(--ease), transform 0.25s var(--ease); }
+.maturity a:hover, .maturity a:focus-visible { border-color: var(--blue); transform: translateY(-2px); }
+.maturity strong { display: block; font-size: 1.05rem; }
+.maturity .mono { display: block; margin-top: 0.35rem; color: var(--slate); }
+.maturity .src { display: block; margin-top: 0.5rem; font-size: 0.82rem; color: var(--slate); }
+
+@media (max-width: 920px) {
+  .hero-v2 .hero-art { order: 0; }
+  .proof-grid { grid-template-columns: 1fr; }
+  .proof-item, .proof-item + .proof-item { padding: 1.1rem 0; border-left: 0; }
+  .proof-item + .proof-item { border-top: 1px solid var(--border); }
+  .maturity { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) { .paths, .maturity, .atlas-list { grid-template-columns: 1fr; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+  .btn:hover, .maturity a:hover, .focus-card:hover { transform: none !important; }
+}
