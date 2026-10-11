@@ -16,6 +16,8 @@ concurrency:
 
 jobs:
   deploy:
+    # Deploy only from the canonical site repository (never from forks or mirrors).
+    if: github.repository == 'MSKazemi/responsiblesystemslab'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
