@@ -73,32 +73,47 @@
     var target = (l.getAttribute("href") || "").split("#")[0].split("/").pop();
     if (target === current) l.classList.add("active");
   });
-  // Contact form: POST to /api/contact (emails the lab). If that fails, fall back to mailto:.
+  // Contact form: static site, so it posts to Web3Forms, which emails the lab.
+  // The access key is public by design (it can only deliver to the registered inbox).
+  var WEB3FORMS_KEY = "REPLACE_WITH_WEB3FORMS_KEY";
   var cf = document.getElementById("contactForm");
   if (cf) {
     var status = document.getElementById("cfStatus");
     var btn = cf.querySelector("button[type=submit]");
     var say = function (t, ok) { status.textContent = t; status.className = "form-note " + (ok ? "form-ok" : "form-err"); };
+    var viaMailto = function (f) {
+      window.location.href = "mailto:contact@responsiblesystemslab.org?subject=" +
+        encodeURIComponent("[RSL] Message from " + f.name) +
+        "&body=" + encodeURIComponent(f.message + "\n\n--\n" + f.name + " <" + f.email + ">");
+    };
     cf.addEventListener("submit", function (e) {
       e.preventDefault();
       var f = {
         name: document.getElementById("cf-name").value.trim(),
         email: document.getElementById("cf-email").value.trim(),
-        message: document.getElementById("cf-msg").value.trim(),
-        website: document.getElementById("cf-website").value
+        message: document.getElementById("cf-msg").value.trim()
       };
+      if (document.getElementById("cf-website").value) return; // honeypot: humans never see it
+      if (WEB3FORMS_KEY.indexOf("REPLACE") === 0) { viaMailto(f); return; }
       btn.disabled = true; say("Sending…", true);
-      fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(f) })
-        .then(function (r) { return r.json().then(function (j) { return { ok: r.ok && j.ok, j: j }; }); })
-        .then(function (res) {
-          if (res.ok) { cf.reset(); say("Thank you — your message was sent.", true); }
-          else { say((res.j && res.j.error) || "Could not send.", false); btn.disabled = false; }
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: "[RSL] Message from " + f.name,
+          from_name: "Responsible Systems Lab website",
+          name: f.name, email: f.email, message: f.message
+        })
+      })
+        .then(function (r) { return r.json(); })
+        .then(function (j) {
+          if (j && j.success) { cf.reset(); say("Thank you — your message was sent.", true); }
+          else { say("Could not send. Please email contact@responsiblesystemslab.org.", false); }
+          btn.disabled = false;
         })
         .catch(function () {
-          say("Could not send. Opening your email app instead…", false); btn.disabled = false;
-          window.location.href = "mailto:contact@responsiblesystemslab.org?subject=" +
-            encodeURIComponent("[RSL] Message from " + f.name) +
-            "&body=" + encodeURIComponent(f.message + "\n\n--\n" + f.name + " <" + f.email + ">");
+          say("Could not send. Opening your email app instead…", false); btn.disabled = false; viaMailto(f);
         });
     });
   }
