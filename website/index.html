@@ -85,7 +85,7 @@
       <span class="hero-tag reveal"><span class="dot"></span> A small, early-stage research initiative</span>
       <h1 class="reveal d1">Technology with <em>responsibility</em> built in.</h1>
       <p class="hero-kicker reveal d1">Build systems. <span>Make them verifiable.</span></p>
-      <p class="hero-sub reveal d2">Responsible Systems Lab is a small, independent, early-stage research initiative developing research-driven prototypes for safer, more humane, and more accountable technology systems — working across software, AI, sensing, cloud, and human-centered design to help protect people, children, animals, and ecosystems in an increasingly automated world.</p>
+      <p class="hero-sub reveal d2">Independent research and open-source engineering for inspectable AI workflows, privacy-aware tools and meaningful human oversight. Explore what exists today, inspect the evidence and understand the limits.</p>
       <div class="hero-actions reveal d3">
         <a class="btn btn-teal" href="projects.html">See what we build
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -114,12 +114,70 @@
         <g class="j-node j-reach" data-node="reach"><rect x="270" y="152" width="120" height="36" rx="18"/><text x="330" y="175" text-anchor="middle">ReachWeaver</text></g>
         <g class="j-node j-idk" data-node="idk"><rect x="409" y="152" width="92" height="36" rx="18"/><text x="455" y="175" text-anchor="middle">IDKMesh</text></g>
         </svg>
-        <ul class="atlas-list">
-          <li><a href="novafabric.html" data-node="nova" data-links="trace rev"><strong>NovaFabric</strong><span>Traceability · Review</span></a></li>
-          <li><a href="idkmesh.html" data-node="idk" data-links="veri rev hum"><strong>IDKMesh</strong><span>Verification · Review · Human oversight</span></a></li>
-          <li><a href="yazses.html" data-node="yaz" data-links="priv"><strong>YazSes</strong><span>Privacy</span></a></li>
-          <li><a href="reachweaver.html" data-node="reach" data-links="hum trace"><strong>ReachWeaver</strong><span>Human oversight · Traceability</span></a></li>
-        </ul>
+
+        <!-- The filters, inspection buttons and detail panel are progressive enhancements.
+             Without JavaScript the SVG, four named projects and their links remain usable. -->
+        <div class="atlas-browser">
+          <div class="atlas-filter-bar" id="atlasFilters" role="group" aria-label="Filter projects by research principle" hidden>
+            <button type="button" class="atlas-filter" data-filter="all" aria-pressed="true">All projects</button>
+            <button type="button" class="atlas-filter" data-filter="priv" aria-pressed="false">Privacy</button>
+            <button type="button" class="atlas-filter" data-filter="trace" aria-pressed="false">Traceability</button>
+            <button type="button" class="atlas-filter" data-filter="veri" aria-pressed="false">Verification</button>
+            <button type="button" class="atlas-filter" data-filter="rev" aria-pressed="false">Review</button>
+            <button type="button" class="atlas-filter" data-filter="hum" aria-pressed="false">Human oversight</button>
+          </div>
+          <ul class="atlas-list" id="atlasProjectList">
+            <li>
+              <a href="novafabric.html" data-node="nova" data-links="trace rev"><strong>NovaFabric</strong><span>Traceability · Review</span></a>
+              <button type="button" class="atlas-inspect" data-node="nova" aria-controls="atlasDetail" aria-pressed="false">Inspect evidence <span aria-hidden="true">↗</span></button>
+            </li>
+            <li>
+              <a href="idkmesh.html" data-node="idk" data-links="veri rev hum"><strong>IDKMesh</strong><span>Verification · Review · Human oversight</span></a>
+              <button type="button" class="atlas-inspect" data-node="idk" aria-controls="atlasDetail" aria-pressed="false">Inspect evidence <span aria-hidden="true">↗</span></button>
+            </li>
+            <li>
+              <a href="yazses.html" data-node="yaz" data-links="priv"><strong>YazSes</strong><span>Privacy</span></a>
+              <button type="button" class="atlas-inspect" data-node="yaz" aria-controls="atlasDetail" aria-pressed="false">Inspect evidence <span aria-hidden="true">↗</span></button>
+            </li>
+            <li>
+              <a href="reachweaver.html" data-node="reach" data-links="hum trace"><strong>ReachWeaver</strong><span>Human oversight · Traceability</span></a>
+              <button type="button" class="atlas-inspect" data-node="reach" aria-controls="atlasDetail" aria-pressed="false">Inspect evidence <span aria-hidden="true">↗</span></button>
+            </li>
+          </ul>
+          <p class="atlas-results" id="atlasResults" hidden></p>
+          <aside class="atlas-detail" id="atlasDetail" aria-label="Selected project evidence" hidden>
+            <div class="atlas-detail-content"></div>
+          </aside>
+          <p class="sr-only" id="atlasAnnouncement" role="status" aria-live="polite"></p>
+        </div>
+        <template id="atlas-detail-nova">
+          <span class="atlas-detail-eyebrow">Released beta · public source</span>
+          <h2 class="atlas-detail-title">NovaFabric</h2>
+          <p>Portable Run Capsules enable inspection, structural comparison and supported mocked replay of recorded agent executions.</p>
+          <p class="atlas-detail-limit"><strong>Boundary:</strong> A recorded run does not prove correctness. Unsupported tools may still execute live during replay.</p>
+          <div class="atlas-detail-actions"><a href="https://github.com/MSKazemi/novafabric" rel="noopener">Inspect public source ↗</a><a href="novafabric.html">Methods and limitations →</a></div>
+        </template>
+        <template id="atlas-detail-idk">
+          <span class="atlas-detail-eyebrow">Research alpha · public source</span>
+          <h2 class="atlas-detail-title">IDKMesh</h2>
+          <p>The available gate-audit CLI examines correlated verifier errors; task and verification contracts support research workflows.</p>
+          <p class="atlas-detail-limit"><strong>Boundary:</strong> The broader multi-agent runner remains incomplete. Synthetic fixture tests do not establish real-world correctness.</p>
+          <div class="atlas-detail-actions"><a href="https://github.com/MSKazemi/idkmesh/blob/main/docs/CAPABILITY_MATRIX.md" rel="noopener">Inspect capability matrix ↗</a><a href="idkmesh.html">Methods and limitations →</a></div>
+        </template>
+        <template id="atlas-detail-yaz">
+          <span class="atlas-detail-eyebrow">Released · public source</span>
+          <h2 class="atlas-detail-title">YazSes</h2>
+          <p>Offline-by-default voice dictation transcribes speech locally and types the result into the active window.</p>
+          <p class="atlas-detail-limit"><strong>Boundary:</strong> Inspect the platform and installation documentation for supported configurations and accessibility features.</p>
+          <div class="atlas-detail-actions"><a href="https://github.com/MSKazemi/yazses" rel="noopener">Inspect public source ↗</a><a href="yazses.html">Methods and limitations →</a></div>
+        </template>
+        <template id="atlas-detail-reach">
+          <span class="atlas-detail-eyebrow">Experimental · private source</span>
+          <h2 class="atlas-detail-title">ReachWeaver</h2>
+          <p>Local research, drafts, outbox and approval steps explore more accountable technical communication.</p>
+          <p class="atlas-detail-limit"><strong>Boundary:</strong> Live publishing through connected accounts is not validated; the source repository is private.</p>
+          <div class="atlas-detail-actions"><a href="reachweaver.html">Read the public overview →</a><a href="contact.html">Discuss the research →</a></div>
+        </template>
         <figcaption>Conceptual map, not live data. Each project connects to the principles its own public description emphasizes.</figcaption>
       </figure>
     </div>
