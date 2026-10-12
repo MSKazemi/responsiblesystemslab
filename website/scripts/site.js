@@ -82,29 +82,122 @@
     var target = (l.getAttribute("href") || "").split("#")[0].split("/").pop();
     if (target === current) l.classList.add("active");
   });
-  // Evidence Atlas (home): highlight the principles a project emphasizes on hover or keyboard focus.
-  // Progressive enhancement only: the map and the project links are fully usable without it.
+  // Evidence Atlas: project/principle exploration with genuine source and limitation links.
+  // Progressive enhancement: project anchors work normally without JavaScript.
   var atlas = document.querySelector(".atlas");
   if (atlas) {
+    var projectLinks = Array.prototype.slice.call(atlas.querySelectorAll(".atlas-list a[data-node]"));
+    var inspectButtons = Array.prototype.slice.call(atlas.querySelectorAll(".atlas-inspect"));
+    var filterBar = atlas.querySelector("#atlasFilters");
+    var filterButtons = filterBar ? Array.prototype.slice.call(filterBar.querySelectorAll(".atlas-filter")) : [];
+    var inspector = atlas.querySelector("#atlasDetail");
+    var detailBody = inspector ? inspector.querySelector(".atlas-detail-content") : null;
+    var results = atlas.querySelector("#atlasResults");
+    var announcement = atlas.querySelector("#atlasAnnouncement");
+    var selectedNode = null;
+
     var clearAtlas = function () {
       atlas.classList.remove("has-active");
       atlas.querySelectorAll(".on").forEach(function (n) { n.classList.remove("on"); });
     };
-    var setAtlas = function (a) {
+    var showMapFor = function (link) {
       clearAtlas();
-      var node = a.getAttribute("data-node");
-      var links = (a.getAttribute("data-links") || "").split(" ");
+      if (!link) return;
+      var node = link.getAttribute("data-node");
+      var principles = (link.getAttribute("data-links") || "").split(/\s+/).filter(Boolean);
       atlas.classList.add("has-active");
-      var n = atlas.querySelector('[data-node="' + node + '"]'); if (n) n.classList.add("on");
-      links.forEach(function (k) {
-        var pr = atlas.querySelector('[data-principle="' + k + '"]'); if (pr) pr.classList.add("on");
-        var ed = atlas.querySelector('[data-edge="' + node + "-" + k + '"]'); if (ed) ed.classList.add("on");
+      var svgNode = atlas.querySelector('svg [data-node="' + node + '"]');
+      if (svgNode) svgNode.classList.add("on");
+      principles.forEach(function (key) {
+        var principle = atlas.querySelector('svg [data-principle="' + key + '"]');
+        var edge = atlas.querySelector('svg [data-edge="' + node + "-" + key + '"]');
+        if (principle) principle.classList.add("on");
+        if (edge) edge.classList.add("on");
       });
     };
-    atlas.querySelectorAll(".atlas-list a").forEach(function (a) {
-      ["mouseenter", "focus"].forEach(function (ev) { a.addEventListener(ev, function () { setAtlas(a); }); });
-      ["mouseleave", "blur"].forEach(function (ev) { a.addEventListener(ev, clearAtlas); });
+    var linkFor = function (node) {
+      return projectLinks.find(function (a) { return a.getAttribute("data-node") === node; });
+    };
+    var restoreMap = function () { showMapFor(selectedNode ? linkFor(selectedNode) : null); };
+
+    var selectProject = function (node, shouldAnnounce) {
+      var link = linkFor(node);
+      var template = document.getElementById("atlas-detail-" + node);
+      if (!link || !template || !detailBody) return;
+      detailBody.replaceChildren(template.content.cloneNode(true));
+      inspector.hidden = false;
+      selectedNode = node;
+      inspectButtons.forEach(function (button) {
+        var active = button.getAttribute("data-node") === node;
+        button.setAttribute("aria-pressed", String(active));
+        button.closest("li").classList.toggle("is-selected", active);
+      });
+      showMapFor(link);
+      if (shouldAnnounce && announcement) {
+        announcement.textContent = "Showing " + link.querySelector("strong").textContent + " evidence and limitations";
+      }
+    };
+
+    // An anchor always navigates; the separate Inspect button opens the evidence panel.
+    projectLinks.concat(inspectButtons).forEach(function (control) {
+      var node = control.getAttribute("data-node");
+      ["mouseenter", "focus"].forEach(function (eventName) {
+        control.addEventListener(eventName, function () { showMapFor(linkFor(node)); });
+      });
+      ["mouseleave", "blur"].forEach(function (eventName) {
+        control.addEventListener(eventName, restoreMap);
+      });
     });
+
+    // Only show enhancement controls if all four evidence templates exist.
+    var canInspect = inspector && detailBody && results && filterBar &&
+      projectLinks.length === 4 && inspectButtons.length === projectLinks.length &&
+      projectLinks.every(function (link) { return !!document.getElementById("atlas-detail-" + link.getAttribute("data-node")); });
+    if (canInspect) {
+      atlas.classList.add("enhanced");
+      filterBar.hidden = false;
+      inspectButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+          selectProject(button.getAttribute("data-node"), true);
+        });
+      });
+      var applyFilter = function (key, announce) {
+        var matches = [];
+        projectLinks.forEach(function (link) {
+          var available = key === "all" ||
+            (link.getAttribute("data-links") || "").split(/\s+/).includes(key);
+          link.closest("li").hidden = !available;
+          if (available) matches.push(link);
+        });
+        filterButtons.forEach(function (button) {
+          button.setAttribute("aria-pressed", String(button.getAttribute("data-filter") === key));
+        });
+        var labelButton = filterButtons.find(function (button) { return button.getAttribute("data-filter") === key; });
+        var label = labelButton ? labelButton.textContent.trim() : "all projects";
+        results.hidden = false;
+        results.textContent = matches.length + " of " + projectLinks.length +
+          " projects shown" + (key === "all" ? "" : " for " + label) +
+          ". Select Inspect evidence to read a project's sources and limits.";
+        if (!matches.length) {
+          selectedNode = null;
+          inspector.hidden = true;
+          clearAtlas();
+        } else if (!selectedNode || !matches.some(function (link) { return link.getAttribute("data-node") === selectedNode; })) {
+          selectProject(matches[0].getAttribute("data-node"), false);
+        } else {
+          restoreMap();
+        }
+        if (announce && announcement) {
+          announcement.textContent = matches.length + " projects match " + label;
+        }
+      };
+      filterButtons.forEach(function (button) {
+        button.addEventListener("click", function () { applyFilter(button.getAttribute("data-filter"), true); });
+      });
+      // Open one useful evidence dossier by default; do not announce unsolicited changes at load.
+      selectProject("nova", false);
+      applyFilter("all", false);
+    }
   }
 
   // Contact form: static site, so it posts to Web3Forms, which emails the lab.
